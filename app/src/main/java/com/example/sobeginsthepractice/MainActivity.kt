@@ -2,25 +2,25 @@ package com.example.sobeginsthepractice
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
-import androidx.activity.viewModels
 import androidx.databinding.DataBindingUtil
-import androidx.lifecycle.LiveData
-import com.example.sobeginsthepractice.api.PopularMovies
-import com.example.sobeginsthepractice.api.RetrofitClient
+import androidx.navigation.fragment.NavHostFragment
+import androidx.navigation.ui.setupWithNavController
 import com.example.sobeginsthepractice.databinding.ActivityMainBinding
-import com.example.sobeginsthepractice.model.Movie
-import com.example.sobeginsthepractice.viewmodel.MovieViewModel
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
+import com.google.android.material.bottomnavigation.BottomNavigationView
 
 
 class MainActivity : AppCompatActivity() {
+    private lateinit var bottomnavbar : BottomNavigationView
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         val binding: ActivityMainBinding=
             DataBindingUtil.setContentView(this,R.layout.activity_main)
+
+        bottomnavbar = findViewById(R.id.bottom_navigation_view)
+        val navHostFragment = supportFragmentManager.findFragmentById(R.id.fragmentContainerView) as NavHostFragment
+        val navController = navHostFragment.navController
+
+        bottomnavbar.setupWithNavController(navController)
 
     }
 

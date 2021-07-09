@@ -1,22 +1,17 @@
 package com.example.sobeginsthepractice.viewmodel
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.sobeginsthepractice.R
-import com.example.sobeginsthepractice.api.PopularMovies
-import com.example.sobeginsthepractice.api.RetrofitClient
-import com.example.sobeginsthepractice.model.Movie
+import com.example.sobeginsthepractice.model.api.PopularMovies
+import com.example.sobeginsthepractice.model.api.SearchResponse
 import com.example.sobeginsthepractice.repository.ApiRepository
 import kotlinx.coroutines.launch
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
 
 class MovieViewModel : ViewModel() {
-    private val repository = ApiRepository()
+
+    private var repository:ApiRepository = ApiRepository()
 
     private val popularMovies:MutableLiveData<PopularMovies?> by lazy {
         MutableLiveData<PopularMovies?>().also {
@@ -24,7 +19,11 @@ class MovieViewModel : ViewModel() {
         }
     }
 
-
+ private val searchedMovies:MutableLiveData<SearchResponse?> by lazy{
+     MutableLiveData<SearchResponse?>().also {
+         populateSearchedMovies("Game")
+     }
+ }
 
     private fun populatePopularMovies(){
         viewModelScope.launch {
@@ -34,9 +33,18 @@ class MovieViewModel : ViewModel() {
 
     }
 
-
+     fun populateSearchedMovies(querry:String){
+        viewModelScope.launch {
+            val response = repository.getSearchedMovie(querry)
+            searchedMovies.postValue(response)
+        }
+    }
     fun getPoplarMovies(): LiveData<PopularMovies?> {
         return popularMovies
     }
 
+
+    fun getSearchQuery(): MutableLiveData<SearchResponse?> {
+        return searchedMovies
+    }
 }
