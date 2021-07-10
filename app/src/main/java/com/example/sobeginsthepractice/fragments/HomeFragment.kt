@@ -13,18 +13,35 @@ class HomeFragment: Fragment(R.layout.fragment_home) {
 
     private val model: MovieViewModel by viewModels()
 
-    private lateinit var searchView:SearchView
+    private lateinit var searchView: SearchView
 
-     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-         searchView = view.findViewById(R.id.searchView)
-       model.getSearchQuery().observe(viewLifecycleOwner,{
-           Log.d("mainD",it.toString())
-       })
-    }
+        searchView = view.findViewById(R.id.searchView)
 
+        searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener{
+            override fun onQueryTextSubmit(query: String?): Boolean {
+                return true
+            }
 
-    private fun textChangeListener(){
+            override fun onQueryTextChange(newText: String?): Boolean {
+
+                model.searchNameChanged(newText!!)
+
+                return true
+            }
+
+        })
+
+        model.getSearchQuerry().observe(viewLifecycleOwner,{
+
+            if(it != null) {
+                Log.d("thedata", it.toString())
+            }
+        })
+
 
     }
 }
+
+

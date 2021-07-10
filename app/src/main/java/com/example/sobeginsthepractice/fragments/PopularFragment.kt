@@ -22,9 +22,10 @@ class PopularFragment: Fragment(R.layout.fragment_popular) {
 
 
         model.getPoplarMovies().observe(viewLifecycleOwner, { popularMovies->
-            Log.d("data",popularMovies?.results.toString())
             popularMovieRecyclerView.adapter = PopularMoviesRecyclerViewAdapter(popularMovies!!);
-            popularMovieRecyclerView.layoutManager = LinearLayoutManager(this.context,LinearLayoutManager.HORIZONTAL,false)
+           popularMovieRecyclerView.layoutManager = LinearLayoutManager(this.context,LinearLayoutManager.HORIZONTAL,false)
+
+            //popularMovieRecyclerView.layoutManager = GridLayoutManager(this.context,2,GridLayoutManager.HORIZONTAL,false)
             popularMovieRecyclerView.itemAnimator = DefaultItemAnimator()
             snapHelper.attachToRecyclerView(popularMovieRecyclerView);
 

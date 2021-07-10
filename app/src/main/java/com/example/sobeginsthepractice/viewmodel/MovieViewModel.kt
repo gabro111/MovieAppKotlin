@@ -1,9 +1,6 @@
 package com.example.sobeginsthepractice.viewmodel
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
+import androidx.lifecycle.*
 import com.example.sobeginsthepractice.model.api.PopularMovies
 import com.example.sobeginsthepractice.model.api.SearchResponse
 import com.example.sobeginsthepractice.repository.ApiRepository
@@ -19,11 +16,22 @@ class MovieViewModel : ViewModel() {
         }
     }
 
- private val searchedMovies:MutableLiveData<SearchResponse?> by lazy{
-     MutableLiveData<SearchResponse?>().also {
-         populateSearchedMovies("Game")
+
+    private var searchedMovies:MutableLiveData<SearchResponse?>  = MutableLiveData()
+
+
+
+
+     fun getSearchQuerry() : LiveData<SearchResponse?>{
+         return Transformations.switchMap(searchLivedt){name-> populateSearchedMovies(name)
+             searchedMovies
+         }
      }
- }
+    var searchLivedt:MutableLiveData<String> = MutableLiveData("g")
+    fun searchNameChanged(name: String) {
+        searchLivedt.value = name
+    }
+
 
     private fun populatePopularMovies(){
         viewModelScope.launch {
@@ -32,10 +40,9 @@ class MovieViewModel : ViewModel() {
         }
 
     }
-
-     fun populateSearchedMovies(querry:String){
+     private fun populateSearchedMovies(query:String){
         viewModelScope.launch {
-            val response = repository.getSearchedMovie(querry)
+            val response = repository.getSearchedMovie(query)
             searchedMovies.postValue(response)
         }
     }
