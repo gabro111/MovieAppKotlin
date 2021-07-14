@@ -19,9 +19,6 @@ class MovieViewModel : ViewModel() {
 
     private var searchedMovies:MutableLiveData<SearchResponse?>  = MutableLiveData()
 
-
-
-
      fun getSearchQuerry() : LiveData<SearchResponse?>{
          return Transformations.switchMap(searchLivedt){name-> populateSearchedMovies(name)
              searchedMovies

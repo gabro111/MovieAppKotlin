@@ -1,14 +1,22 @@
 package com.example.sobeginsthepractice.adapter
 
+import android.graphics.drawable.Drawable
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
+import androidx.swiperefreshlayout.widget.CircularProgressDrawable
 import com.bumptech.glide.Glide
+import com.bumptech.glide.load.DataSource
+import com.bumptech.glide.load.engine.GlideException
+import com.bumptech.glide.request.RequestListener
+import com.bumptech.glide.request.target.Target
 import com.example.sobeginsthepractice.R
 import com.example.sobeginsthepractice.model.api.PopularMovies
+import com.google.android.material.progressindicator.CircularProgressIndicator
 
 class PopularMoviesRecyclerViewAdapter(private val result: PopularMovies):RecyclerView.Adapter<PopularMoviesRecyclerViewAdapter.PopularMoviesRecyclerViewHolder>() {
 
@@ -16,6 +24,8 @@ class PopularMoviesRecyclerViewAdapter(private val result: PopularMovies):Recycl
 
         val imageView: ImageView = itemView.findViewById(R.id.imageView)
          val ratingView : TextView = itemView.findViewById(R.id.ratingView)
+
+
      }
 
     override fun onCreateViewHolder(
@@ -28,10 +38,15 @@ class PopularMoviesRecyclerViewAdapter(private val result: PopularMovies):Recycl
     }
 
     override fun onBindViewHolder(holder: PopularMoviesRecyclerViewHolder, position: Int) {
-        Glide.with(holder.itemView)
-            .load("http://image.tmdb.org/t/p/w500${result.results[position].poster_path}")
-            .override(250, 350)
-            .into(holder.imageView)
+
+            Glide.with(holder.itemView)
+                .load("http://image.tmdb.org/t/p/w500${result.results[position].poster_path}")
+                .override(250, 350)
+                .into(holder.imageView)
+
+
+
+
         holder.ratingView.text  = result.results[position].vote_average.toString()
     }
 

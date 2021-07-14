@@ -7,7 +7,11 @@
     <fragment
         android:id="@+id/homeFragment"
         android:name="com.example.sobeginsthepractice.fragments.HomeFragment"
-        android:label="HomeFragment" />
+        android:label="HomeFragment" >
+        <action
+            android:id="@+id/action_homeFragment_to_movieDetailFragment"
+            app:destination="@id/movieDetailFragment" />
+    </fragment>
     <fragment
         android:id="@+id/popularFragment"
         android:name="com.example.sobeginsthepractice.fragments.PopularFragment"
@@ -16,4 +20,32 @@
         android:id="@+id/profileFragment"
         android:name="com.example.sobeginsthepractice.fragments.ProfileFragment"
         android:label="ProfileFragment" />
+    <fragment
+        android:id="@+id/movieDetailFragment"
+        android:name="com.example.sobeginsthepractice.fragments.MovieDetailFragment"
+        android:label="MovieDetailFragment" >
+        <action
+            android:id="@+id/action_movieDetailFragment_to_homeFragment"
+            app:destination="@id/homeFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim" />
+        <argument
+            android:name="overview "
+            app:argType="string" />
+        <argument
+            android:name="title"
+            app:argType="string" />
+        <argument android:name="popularity"
+            android:defaultValue="0" />
+        <argument
+            android:name="vote_avarage"
+            android:defaultValue="0" />
+        <argument
+            android:name="vote_count"
+            app:argType="integer"
+            android:defaultValue="0" />
+        <argument
+            android:name="poster_path"
+            app:argType="string" />
+    </fragment>
 </navigation>
