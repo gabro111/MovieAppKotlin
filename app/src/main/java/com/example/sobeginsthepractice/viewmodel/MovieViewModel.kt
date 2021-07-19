@@ -47,8 +47,4 @@ class MovieViewModel : ViewModel() {
         return popularMovies
     }
 
-
-    fun getSearchQuery(): MutableLiveData<SearchResponse?> {
-        return searchedMovies
-    }
 }

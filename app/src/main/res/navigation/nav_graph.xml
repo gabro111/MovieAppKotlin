@@ -36,10 +36,10 @@
             android:name="title"
             app:argType="string" />
         <argument android:name="popularity"
-            android:defaultValue="0" />
+            app:argType="java.lang.Double" />
         <argument
             android:name="vote_avarage"
-            android:defaultValue="0" />
+            app:argType="java.lang.Double" />
         <argument
             android:name="vote_count"
             app:argType="integer"

@@ -1,5 +1,6 @@
 package com.example.sobeginsthepractice.fragments
 
+import android.opengl.Visibility
 import android.os.Bundle
 import android.util.Log
 import android.view.View
@@ -41,12 +42,15 @@ class HomeFragment: Fragment(R.layout.fragment_home) {
         model.getSearchQuerry().observe(viewLifecycleOwner,{ searchResponse->
 
             if(searchResponse != null){
+                searchRecyclerView.visibility = View.VISIBLE
                 searchRecyclerView.adapter = SearchMoviesRecyclerViewAdapter(searchResponse)
                 searchRecyclerView.layoutManager =GridLayoutManager(this.context,2,
                     GridLayoutManager.VERTICAL,false)
                 Log.d("dataF",searchResponse.results.toString())
 
                 //popularMovieRecyclerView.layoutManager = GridLayoutManager(this.context,2,GridLayoutManager.HORIZONTAL,false)
+            }else {
+                searchRecyclerView.visibility = View.INVISIBLE
             }
         })
 
