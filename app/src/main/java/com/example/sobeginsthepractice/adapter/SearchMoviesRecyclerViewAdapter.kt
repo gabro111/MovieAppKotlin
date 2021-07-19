@@ -37,8 +37,8 @@ class SearchMoviesRecyclerViewAdapter(private val item:SearchResponse):RecyclerV
                 val action = HomeFragmentDirections.actionHomeFragmentToMovieDetailFragment(
                     item.results[position].overview,
                     item.results[position].title,
-                    popularity = item.results[position].popularity,
-                    voteAvarage = item.results[position].voteAverage,
+                    popularity = item.results[position].popularity.toString(),
+                    voteAverage = item.results[position].voteAverage.toString(),
                     voteCount = item.results[position].voteCount,
                     posterPath = item.results[position].posterPath!!
                 )
@@ -47,8 +47,8 @@ class SearchMoviesRecyclerViewAdapter(private val item:SearchResponse):RecyclerV
                 val action = HomeFragmentDirections.actionHomeFragmentToMovieDetailFragment(
                     item.results[position].overview,
                     item.results[position].title,
-                    popularity = item.results[position].popularity,
-                    voteAvarage = item.results[position].voteAverage,
+                    popularity = item.results[position].popularity.toString(),
+                    voteAverage = item.results[position].voteAverage.toString(),
                     voteCount = item.results[position].voteCount,
                     posterPath = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSJkMkX41fLskWMAFjaRPKyrsuN401djg22fQ&usqp=CAU"
                 )
