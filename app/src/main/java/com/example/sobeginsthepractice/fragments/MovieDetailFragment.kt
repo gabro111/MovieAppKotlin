@@ -21,7 +21,7 @@ val args:MovieDetailFragmentArgs by navArgs()
         imageView2 = view.findViewById(R.id.imageView2)
         Glide.with(this)
             .load("http://image.tmdb.org/t/p/w500${args.posterPath}")
-            .override(250, 350)
+            .override(350, 450)
             .into(imageView2)
         val movieDetailBinding  = FragmentMovieDetailBinding.bind(view)
         movieDetailBinding.overview = args.overviews

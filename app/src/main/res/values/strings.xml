@@ -1,4 +1,7 @@
 <resources>
     <string name="app_name">soBeginsThePractice</string>
     <string name="api_key">d6575a10f23b90ae43b5a20fed962905</string>
+    <string name="image">Image</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

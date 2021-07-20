@@ -36,7 +36,8 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            tools:srcCompat="@tools:sample/avatars" />
+            tools:srcCompat="@tools:sample/avatars"
+            android:contentDescription="@string/image" />
 
         <TextView
             android:id="@+id/movieTitle"
@@ -51,7 +52,7 @@
         <TextView
             android:id="@+id/movieDescription"
             android:layout_width="307dp"
-            android:layout_height="203dp"
+            android:layout_height="wrap_content"
             android:layout_marginTop="32dp"
             android:text="@{overview}"
             app:layout_constraintEnd_toEndOf="parent"
