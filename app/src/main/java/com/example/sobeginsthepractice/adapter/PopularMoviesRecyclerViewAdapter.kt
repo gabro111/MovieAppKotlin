@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.core.content.ContextCompat
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.CircularProgressDrawable
 import com.bumptech.glide.Glide
@@ -15,6 +16,7 @@ import com.bumptech.glide.load.engine.GlideException
 import com.bumptech.glide.request.RequestListener
 import com.bumptech.glide.request.target.Target
 import com.example.sobeginsthepractice.R
+import com.example.sobeginsthepractice.fragments.PopularFragmentDirections
 import com.example.sobeginsthepractice.model.api.PopularMovies
 import com.google.android.material.progressindicator.CircularProgressIndicator
 
@@ -38,6 +40,15 @@ class PopularMoviesRecyclerViewAdapter(private val result: PopularMovies):Recycl
     }
 
     override fun onBindViewHolder(holder: PopularMoviesRecyclerViewHolder, position: Int) {
+
+
+        holder.itemView.setOnClickListener {
+            val action = PopularFragmentDirections.actionPopularFragmentToMovieDetailFragment(overviews = result.results[position].overview,
+            title = result.results[position].title,posterPath = result.results[position].poster_path,voteAverage = result.results[position].vote_average.toString(),
+                voteCount = result.results[position].vote_count,popularity = "100"
+                )
+            holder.itemView.findNavController().navigate(action)
+        }
 
             Glide.with(holder.itemView)
                 .load("http://image.tmdb.org/t/p/w500${result.results[position].poster_path}")

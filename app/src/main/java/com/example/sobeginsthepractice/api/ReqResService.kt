@@ -15,5 +15,10 @@ interface ReqResService {
     @GET("/3/search/movie")
     suspend fun searchMovie(@Query("api_key")key: String,
                             @Query("query")query:String,
-                            @Query("include_adult")case:Boolean = true):Response<SearchResponse>
+                            @Query("include_adult")case:Boolean = true, ):Response<SearchResponse>
+    @GET("/3/discover/movie")
+    suspend fun sortBySearchKey(@Query("api_key")key:String,
+                                @Query("sort_by")query: String)
+
+
 }

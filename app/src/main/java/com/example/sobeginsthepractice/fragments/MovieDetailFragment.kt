@@ -15,7 +15,7 @@ class MovieDetailFragment :Fragment(R.layout.fragment_movie_detail) {
 
 
     private lateinit var imageView2 : ImageView;
-val args:MovieDetailFragmentArgs by navArgs()
+    private val args:MovieDetailFragmentArgs by navArgs<MovieDetailFragmentArgs>()
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         imageView2 = view.findViewById(R.id.imageView2)

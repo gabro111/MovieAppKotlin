@@ -16,7 +16,11 @@
     <fragment
         android:id="@+id/popularFragment"
         android:name="com.example.sobeginsthepractice.fragments.PopularFragment"
-        android:label="PopularFragment" />
+        android:label="PopularFragment" >
+        <action
+            android:id="@+id/action_popularFragment_to_movieDetailFragment"
+            app:destination="@id/movieDetailFragment" />
+    </fragment>
     <fragment
         android:id="@+id/profileFragment"
         android:name="com.example.sobeginsthepractice.fragments.ProfileFragment"
@@ -46,5 +50,8 @@
         <argument
             android:name="poster_path"
             app:argType="string" />
+        <action
+            android:id="@+id/action_movieDetailFragment_to_popularFragment"
+            app:destination="@id/popularFragment" />
     </fragment>
 </navigation>

@@ -3,6 +3,9 @@ package com.example.sobeginsthepractice.repository
 import com.example.sobeginsthepractice.model.api.PopularMovies
 import com.example.sobeginsthepractice.api.RetrofitClient
 import com.example.sobeginsthepractice.model.api.SearchResponse
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.flow
+
 
 sealed class Result<out R> {
     data class Success<out T>(val data: T) : Result<T>()
@@ -15,6 +18,16 @@ class ApiRepository {
 
 
 
+
+   val favoriteMovies: Flow<PopularMovies?> = flow{
+
+       while (true){
+           val request = RetrofitClient.reqResApi.getMovies(api_key)
+           if(request.isSuccessful){
+               emit(request.body())
+           }
+       }
+   }
 
     suspend fun getPopularMovies(): PopularMovies? {
         val request = RetrofitClient.reqResApi.getMovies(api_key)
